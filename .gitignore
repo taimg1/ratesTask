@@ -1,0 +1,36 @@
+# Загальні файли для ігнорування
+.DS_Store
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Файли редакторів
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Файли збірки
+/dist
+/build
+
+# Файли тестування
+/coverage
+
+# Файли логів
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Файли середовища
+.env
+.env.test
+.env.production
+
+# Файли конфігурації
+/.next
+/next.config.js
