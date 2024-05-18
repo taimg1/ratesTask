@@ -8,7 +8,7 @@ export const RatesTables = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const result = await axios.get('http://localhost:5001/api/getExchangeRates');
+                const result = await axios.get(`${process.env.REACT_APP_API_URL}/api/getExchangeRates`);
                 setRates(result.data);
             }
             catch (error) {
