@@ -1,14 +1,20 @@
 import axios  from "axios";
 import {useEffect,useState} from "react";
-import {Table} from "react-bootstrap";
+import Table from "react-bootstrap/Table";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const RatesTables = () => {
     const [rates, setRates] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
-            const result = await axios.get('http://localhost:5001/api/getExchangeRates');
-            setRates(result.data);
+            try {
+                const result = await axios.get('http://localhost:5001/api/getExchangeRates');
+                setRates(result.data);
+            }
+            catch (error) {
+                console.error(error);
+            }
+
         };
         fetchData();
     }, []);
@@ -22,11 +28,11 @@ export const RatesTables = () => {
             <div className="d-flex  justify-content-center">
                 <div className="m-4">
                     <h2 className="text-center">USD</h2>
-                    {TableView(usdRates)}
+                    {usdRates.length > 0 ? TableView(usdRates) : <p>No data</p>}
                 </div>
                 <div className="m-4">
                     <h2 className="text-center">EUR</h2>
-                    {TableView(eurRates)}
+                    {eurRates.length > 0 ? TableView(eurRates) : <p>No data</p>}
                 </div>
             </div>
         </div>
