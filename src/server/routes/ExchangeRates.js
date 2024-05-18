@@ -7,7 +7,7 @@ const router = express.Router();
 const options = {
   method: 'GET',
   url: process.env.API_URL,
-  params: {base: 'UAH'},
+  params: {base: process.env.API_BASE},
   headers: {
     'X-RapidAPI-Key': process.env.API_KEY,
     'X-RapidAPI-Host': process.env.API_HOST
