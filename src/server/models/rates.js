@@ -1,4 +1,3 @@
-// models/rates.js
 const { Model, DataTypes } = require('sequelize');
 
 class ExchangeRate extends Model {}
@@ -28,7 +27,7 @@ module.exports = (sequelize) => {
   }, {
     sequelize,
     modelName: 'ExchangeRate',
-    tableName: 'rates',
+    tableName: process.env.DB_TABLE,
     timestamps: false,
     indexes: [{
       unique: true,

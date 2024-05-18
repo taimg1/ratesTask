@@ -6,15 +6,13 @@ const router = express.Router();
 
 const options = {
   method: 'GET',
-  url: 'https://exchange-rate-api1.p.rapidapi.com/latest',
+  url: process.env.API_URL,
   params: {base: 'UAH'},
   headers: {
-    'X-RapidAPI-Key': `${process.env.API_KEY}`,
-    'X-RapidAPI-Host': 'exchange-rate-api1.p.rapidapi.com'
+    'X-RapidAPI-Key': process.env.API_KEY,
+    'X-RapidAPI-Host': process.env.API_HOST
   }
 };
-
-
 
 async function fetchAndSaveExchangeRates() {
   const sequelize = await connectToDatabase();
@@ -28,7 +26,7 @@ async function fetchAndSaveExchangeRates() {
     usdRate  = 1 / usdRate;
     eurRate = 1 / eurRate;
 
-    await ExchangeRate.create({ rate_date: new Date(), currency: 'USD', rate: usdRate });
+    await ExchangeRate.create({ rate_date: rates.time_utc, currency: 'USD', rate: usdRate });
     await ExchangeRate.create({ rate_date: new Date(), currency: 'EUR', rate: eurRate });
 
   } catch (error) {
