@@ -12,3 +12,11 @@ API_BASE=\
 PORT=\
 ## For client
 REACT_APP_API_URL=
+## DB table
+CREATE TABLE exchange_rates (
+    id SERIAL PRIMARY KEY,
+    rate_date DATE NOT NULL,
+    currency CHAR(3) NOT NULL CHECK (currency IN ('USD', 'EUR')),
+    rate NUMERIC(10, 4) NOT NULL,
+    UNIQUE (rate_date, currency)
+);
