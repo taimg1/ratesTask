@@ -21,16 +21,17 @@ async function fetchAndSaveExchangeRates() {
   try {
     const response = await axios.request(options);
     const rates = response.data.rates;
+    const date = response.data.time_update.time_utc;
     let usdRate = rates.USD;
     let eurRate = rates.EUR;
     usdRate  = 1 / usdRate;
     eurRate = 1 / eurRate;
 
-    await ExchangeRate.create({ rate_date: rates.time_utc, currency: 'USD', rate: usdRate });
-    await ExchangeRate.create({ rate_date: new Date(), currency: 'EUR', rate: eurRate });
+    await ExchangeRate.create({ rate_date: date, currency: 'USD', rate: usdRate });
+    await ExchangeRate.create({ rate_date: date, currency: 'EUR', rate: eurRate });
 
   } catch (error) {
-    console.log("many requests");
+    console.log(error);
   }
 }
 

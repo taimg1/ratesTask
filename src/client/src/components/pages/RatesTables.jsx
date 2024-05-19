@@ -52,7 +52,7 @@ const TableView = (rates) => {
             <tbody>
             {rates.map((rate) => (
                 <tr key={rate.id}>
-                    <td>{rate.rate_date}</td>
+                    <td>{new Date(rate.rate_date).toLocaleString()}</td>
                     <td>{rate.currency}</td>
                     <td>{rate.rate}</td>
                 </tr>
